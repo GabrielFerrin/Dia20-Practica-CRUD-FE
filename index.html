@@ -6,15 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Usuarios FUNVAL</title>
   <link rel="stylesheet" href="./styles/style.css">
-  <script src="./scripts/script.js"></script>
+  <script defer src="./scripts/script.js"></script>
 </head>
 
 <body>
-  <div id="nav">
-    <img src="./assets/logo-dark.svg" alt="logo" height="45">
-    <span id="home-title">GABRIEL FERRIN</span>
-  </div>
+  <header id="nav">
+    <div id="nav-wrapper">
+      <img src="./assets/logo-dark.svg" alt="logo" height="45">
+      <h1 id="home-title">GABRIEL FERRIN</h1>
+    </div>
+    <button id="register-btn">Registrarse</button>
+  </header>
   <div id="strip"></div>
+  <main>
+    <div id="wrapper01">
+      <h2>Manejo de usuarios de FUNVAL</h2>
+      <p>Aplicación de práctica para manejo de usuarios. Diseño responsivo.</p>
+      <div id="wrapper01-1">
+        <div class="tech-wrapper">
+          <span>Frontend</span>
+          <img class="lang-logos" src="./assets/front-end.svg" alt="Logos de Html, Css y Javascript" height="50">
+        </div>
+        <div class="tech-wrapper">
+          <span>Back-end</span>
+          <img class="lang-logos" src="./assets/back-end.svg" alt="Logos de Nodejs y Express" height="50">
+        </div>
+      </div>
+    </div>
+    <div id="wrapper02">
+      <h3>Probar la aplicación es sencillo</h3>
+      <span>Inicia sesión para empezar</span>
+      <form method="get" name="login" autocomplete="on">
+        <input type="text" name="username" placeholder="Nombre de usuario" required>
+        <input type="password" name="username" placeholder="Contraseña" required>
+        <input type="submit"  value="Iniciar sesión">
+      </form>
+    </div>
+  </main>
+  <footer>
+
+  </footer>
 </body>
 
 </html>
