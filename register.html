@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuarios FUNVAL</title>
+  <link rel="icon" href="./assets/logo-dark.svg" type="image/svg">
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/register.css">
+  <script defer src="./scripts/config.js"></script>
+  <script defer src="./scripts/script.js"></script>
+  <script defer src="./scripts/register.js"></script>
+</head>
+
+<body>
+  <div id="server-check">
+    Se perdió la conexión con el servidor! Por favor, intenta más tarde.
+    <img src="./assets/warning.svg" alt="Señal de alerta" height="27">
+  </div>
+  <header id="nav">
+    <div id="nav-wrapper">
+      <img src="./assets/logo-dark.svg" alt="logo" height="45">
+      <h1 id="home-title">GABRIEL FERRIN</h1>
+    </div>
+    <button id="register-btn" onclick="location.href='./index.html'">
+      Volver
+    </button>
+  </header>
+  <div id="strip"></div>
+  <main>
+    <div id="wrapper02">
+      <h3>Probar la aplicación es sencillo</h3>
+      <span>Completa los campos para registrarte</span>
+      <form method="get" name="login" onSubmit="return customFormAction()">
+        <!-- username -->
+        <input type="text" name="username" id="username" required autocomplete="on" placeholder="Nombre de usuario">
+        <div id="spinner02" class="loadingspinner"></div>
+        <span id="checkmark">&#x2713;</span>
+        <span id="username-error" class="error-span">
+          El nombre de usuario no está disponible
+        </span>
+        <!-- password -->
+        <input type="password" name="password" id="password" required autocomplete="current-password" placeholder="Contraseña"
+          minlength="8">
+        <span id="password-error" class="error-span">
+          Mínimo 8 caracteres
+        </span>
+        <!-- code -->
+        <input type="text" name="code" id="code" autocomplete="off" required placeholder="Código">
+        <!-- comment -->
+        <textarea type="text" name="comment" id="comment" autocomplete="off"
+          placeholder="Dinos quién eres y porqué deseas probar el proyecto."></textarea>
+        <input type="submit" value="Registrarme" id="submit-btn" disabled="disabled">
+      </form>
+      <!-- users available message -->
+      <div class="wrapper02-1">
+        <p id="info">
+          Cupos disponibles para pruebas:
+          <span id="users-available"></span>
+        </p>
+        <div id="spinner01" class="loadingspinner"></div>
+      </div>
+      <!-- error list -->
+      <span id="tester-error" class="error-span">Por el momento no hay usuarios disponibles para realizar
+        pruebas.</span>
+      <ul id="error-list">
+      </ul>
+      <!-- setup section -->
+      <div id="wrapper02-2">
+        hello
+      </div>
+    </div>
+  </main>
+  <!-- <footer>
+
+  </footer> -->
+</body>
+
+</html>

@@ -12,13 +12,16 @@ body {
   --text-light01: #050505;
   --text-light02: #01365E;
   --contrast-01: #3CBEC0;
+  --error-01: #a10000;
+  --disabled-01: #E0E0E0;
+  /* properties */
   font-family: 'Montserrat', sans-serif;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
   width: 100%;
   max-width: 1500px;
-  min-width: 300px;
+  min-width: 350px;
   min-height: 100vh;
   background-color: var(--bg-dark01);
   color: var(--text-dark01);
@@ -37,6 +40,19 @@ p {
 
 p {
   line-height: 1.6rem;
+}
+
+#server-check {
+  display: none;
+  background-color: var(--error-01);
+  color: var(--bg-light02);
+  padding: .5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  gap: 1rem;
 }
 
 #nav {
@@ -126,6 +142,7 @@ main h2 {
   border-radius: .5rem;
   padding: 1rem;
   width: 70%;
+  min-width: 350px;
 }
 
 .tech-wrapper {
@@ -152,12 +169,17 @@ form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1rem;
   margin-top: .5rem;
+  position: relative;
+}
+
+input {
+  margin: .3rem 0;
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+textarea {
   font-family: 'Montserrat', sans-serif;
   height: 3rem;
   padding-left: .7rem;
@@ -171,14 +193,16 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+textarea:focus {
   outline: none;
   border-bottom: 1px solid var(--contrast-01);
   background-color: var(--bg-light01);
 }
 
 input[type="text"]:focus::placeholder,
-input[type="password"]:focus::placeholder {
+input[type="password"]:focus::placeholder,
+textarea:focus::placeholder {
   color: transparent;
   padding-left: 0rem;
 }
@@ -212,11 +236,22 @@ input[type="submit"]:active {
   background-color: var(--bg-dark02);
 }
 
+input:focus:invalid {
+  border-bottom: 1px solid var(--error-01);
+}
+
+.error-span {
+  color: var(--error-01);
+  font-weight: 500;
+  display: none;
+}
+
 @media (max-width: 1090px) {
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 2rem;
   }
 
   #wrapper01,
@@ -229,5 +264,16 @@ input[type="submit"]:active {
   #wrapper02 {
     max-width: 500px;
     margin-top: .5rem;
+  }
+
+  #wrapper01-1 {
+    padding: 2rem 0;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 500px) {
+  main {
+    padding: 1rem;
   }
 }
