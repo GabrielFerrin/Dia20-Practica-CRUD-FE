@@ -48,7 +48,6 @@ p {
   color: var(--bg-light02);
   padding: .5rem;
   text-align: center;
-  display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 600;

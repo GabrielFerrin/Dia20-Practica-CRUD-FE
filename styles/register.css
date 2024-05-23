@@ -25,14 +25,6 @@ main {
 	}
 }
 
-#spinner02,
-#checkmark {
-	position: absolute;
-	right: -6%;
-	top: 8%;
-	display: none;
-}
-
 .wrapper02-1 {
   display: flex;
   align-items: center;
@@ -58,9 +50,80 @@ main {
   font-weight: 500;
 }
 
-#checkmark {
+#spinner02,
+#spinner03,
+#spinner04,
+#spinner05,
+#checkmark01,
+#checkmark02,
+#checkmark03,
+#checkmark04,
+#exmark02,
+#exmark03,
+#exmark04 {
+	position: absolute;
+	right: -6%;
+	top: 8%;
+	display: none;
+}
+
+#checkmark01,
+#checkmark02,
+#checkmark03,
+#checkmark04,
+#checkmark05 {
 	font-weight: 900;
 	color: green;
 	font-size: 1.4rem;
 	top: 5%;
+}
+
+#populate-wrapper {
+	display: flex;
+	align-items: center;
+	gap: .3rem;
+	margin: .2rem;
+	margin-bottom: .5rem;
+}
+
+#wrapper02-2 {
+	text-align: start;
+	align-self: flex-start;
+	display: none;
+}
+
+#wrapper02-2 ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+}
+
+#wrapper02-2 ul li {
+	position: relative;
+	display: flex;
+	gap: .5rem;
+	padding-left: 1.5rem;
+}
+
+#checkmark02,
+#checkmark03,
+#checkmark04 {
+	top: -25%;
+	left: 0;
+}
+
+#spinner03,
+#spinner04,
+#spinner05,
+#exmark02,
+#exmark03,
+#exmark04 {
+	top: 0;
+	left: 0;
+}
+
+#wrapper02-2 #all-ready-redirecting {
+	display: none;
 }

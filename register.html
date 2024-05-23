@@ -34,23 +34,28 @@
       <span>Completa los campos para registrarte</span>
       <form method="get" name="login" onSubmit="return customFormAction()">
         <!-- username -->
-        <input type="text" name="username" id="username" required autocomplete="on" placeholder="Nombre de usuario">
+        <input type="text" name="username" id="username" required autocomplete="on" placeholder="Nombre de usuario" value ="gabriel">
         <div id="spinner02" class="loadingspinner"></div>
-        <span id="checkmark">&#x2713;</span>
+        <span id="checkmark01">&#x2713;</span>
         <span id="username-error" class="error-span">
           El nombre de usuario no está disponible
         </span>
         <!-- password -->
-        <input type="password" name="password" id="password" required autocomplete="current-password" placeholder="Contraseña"
-          minlength="8">
+        <input type="password" name="password" id="password" required autocomplete="current-password"
+          placeholder="Contraseña" minlength="8" value ="12345678">
         <span id="password-error" class="error-span">
           Mínimo 8 caracteres
         </span>
         <!-- code -->
-        <input type="text" name="code" id="code" autocomplete="off" required placeholder="Código">
+        <input type="text" name="code" id="code" autocomplete="off" required placeholder="Código" value ="12345678">
         <!-- comment -->
         <textarea type="text" name="comment" id="comment" autocomplete="off"
-          placeholder="Dinos quién eres y porqué deseas probar el proyecto."></textarea>
+          placeholder="Dinos quién eres y porqué deseas probar el proyecto.">Comentario</textarea>
+        <!-- populate checkbox -->
+        <div id="populate-wrapper">
+          <input type="checkbox" name="populate" id="populate">
+          <label for="populate">Empezar con datos ficticios</label>
+        </div>
         <input type="submit" value="Registrarme" id="submit-btn" disabled="disabled">
       </form>
       <!-- users available message -->
@@ -68,7 +73,29 @@
       </ul>
       <!-- setup section -->
       <div id="wrapper02-2">
-        hello
+        <ul>
+          <li id="account-update">
+            <div class="loadingspinner" id="spinner03"></div>
+            <span id="checkmark02">&#x2713;</span>
+            <span id="exmark02">&#x274C;</span>
+            Creando cuenta
+          </li>
+          <li id="db-update">
+            <div class="loadingspinner" id="spinner04"></div>
+            <span id="checkmark03">&#x2713;</span>
+            <span id="exmark03">&#x274C;</span>
+            Creando base de datos
+          </li>
+          <li id="fake-data-update">
+            <div class="loadingspinner" id="spinner05"></div>
+            <span id="checkmark04">&#x2713;</span>
+            <span id="exmark04">&#x274C;</span>
+            Agregando datos ficticios
+          </li>
+          <li id="all-ready-redirecting">
+            Todo listo! Redirigiendo...
+          </li>
+        </ul>
       </div>
     </div>
   </main>

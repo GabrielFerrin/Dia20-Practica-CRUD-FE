@@ -1,6 +1,5 @@
 const serverCheck = document.querySelector('#server-check');
 const apiTest = window.env.API_URL_CHECK;
-serverCheck.style.display = 'none';
 
 const checkServer = async () => {
   try {
@@ -8,7 +7,7 @@ const checkServer = async () => {
     const data = await res.json();
     if (data.success) serverCheck.style.display = 'none'
   } catch (error) {
-    serverCheck.style.display = 'flex';
+      serverCheck.style.display = 'flex';
     console.log(error.message);
   }
 }
