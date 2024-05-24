@@ -125,10 +125,15 @@ p {
 }
 
 main {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 4rem;
+}
+
+#home {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 3rem 6rem;
-  gap: 2rem;
 }
 
 main h2 {
@@ -307,7 +312,7 @@ textarea:focus:invalid {
 }
 
 @media (max-width: 1090px) {
-  main {
+  #home {
     display: flex;
     flex-direction: column;
     align-items: center;
