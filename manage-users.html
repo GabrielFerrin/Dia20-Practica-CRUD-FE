@@ -15,10 +15,34 @@
 </head>
 
 <body>
+  <!-- create/update users form -->
+  <div id="users">
+    <div id="users-container">
+      <span id="close-icon">&times;</span>
+      <h2>Actualizar datos de susuarios</h2>
+      <!-- form -->
+      <form name="user">
+        <div id="form-left-side">
+          <input type="text" name="name" id="name" required autocomplete="on" placeholder="Nombres">
+          <input type="email" name="email" id="email" required autocomplete="on" placeholder="correo">
+          <input type="password" name="password" id="password" required autocomplete="on" placeholder="Nueva contraseña">
+          <select name="role" id="role" required autocomplete="on" placeholder="Rol">
+            <option value="Supervisor">Maestro</option>
+            <option value="Controller">Controller</option>
+            <option value="Maestro">Supervisor</option>
+          </select>
+        </div>
+        <div id="form-right-side">
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--  -->
   <div id="server-check">
     Se perdió la conexión con el servidor! Por favor, intenta más tarde.
     <img src="./assets/warning.svg" alt="Señal de alerta" height="27">
   </div>
+  <!-- nav -->
   <header id="nav">
     <a id="nav-wrapper" href="./index.html">
       <img src="./assets/logo-dark.svg" alt="logo" height="45">
@@ -33,13 +57,14 @@
     </div>
   </header>
   <div id="strip"></div>
+  <!-- main -->
   <main id="manage-users">
     <div id="main-header">
       <div class="title">
         <h2>Gestión de usuarios</h2>
       </div>
       <div class="options">
-        <button>Agregar usuario</button>
+        <button id="add-user-btn">Agregar usuario</button>
         <button>Reiniciar datos</button>
       </div>
     </div>

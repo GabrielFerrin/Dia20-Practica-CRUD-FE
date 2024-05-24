@@ -1,3 +1,68 @@
+body {
+  position: relative;
+}
+
+/* add/update user */
+#users {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.712);
+  padding: 3rem;
+  box-sizing: border-box;
+}
+
+#users-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg-light01);
+  color: var(--text-light01);
+  border-radius: .4rem;
+  width: calc(100% - 4rem);
+  padding: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+#form-left-side,
+#form-right-side {
+  width: 100%;
+}
+
+input {
+  width: calc(100% - 1rem);
+}
+
+#close-icon {
+  font-size: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .15s ease-out;
+}
+
+#close-icon:hover {
+  background-color: var(--error-01);
+  cursor: pointer;
+  color: var(--bg-light01);
+}
+/*  */
+
 #manage-users {
   display: flex;
   flex-direction: column;
@@ -90,4 +155,10 @@ button:hover {
 
 button:active {
   background-color: var(--bg-dark03);
+}
+
+@media (max-width: 800px) {
+  form {
+    flex-direction: column;
+  }
 }

@@ -64,16 +64,18 @@ const renderUsers = (users) => {
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Eliminar';
     deleteBtn.addEventListener('click', async () => {
-      const username = localStorage.getItem('username');
-      const pass = localStorage.getItem('password');
-      const url = apiUrl + '/?user=' + username + '&pass=' +
-        pass + '&id=' + user.user_id;
-      const rawRes = await fetch(url, {
-        method: 'DELETE'
-      })
-      const res = await rawRes.json()
-      if (res.success) getUsers();
-      else alert(res.message)
+      if (confirm(`¿Está seguro que desea eliminar el usuario ${user.name}?`)) {
+        const username = localStorage.getItem('username');
+        const pass = localStorage.getItem('password');
+        const url = apiUrl + '/?user=' + username + '&pass=' +
+          pass + '&id=' + user.user_id;
+        const rawRes = await fetch(url, {
+          method: 'DELETE'
+        })
+        const res = await rawRes.json()
+        if (res.success) getUsers();
+        else alert(res.message)
+      }
     })
     actions.appendChild(deleteBtn);
     cardsContainer.appendChild(card);
@@ -94,3 +96,13 @@ const getUsers = async() => {
 }
 
 getUsers();
+
+// create/update user
+const closeBtn = document.querySelector('#close-icon');
+const addUserBtn = document.querySelector('#add-user-btn');
+addUserBtn.addEventListener('click', () => {
+  document.querySelector('#users').style.display = 'block';
+})
+closeBtn.addEventListener('click', () => {
+  document.querySelector('#users').style.display = 'none';
+})

@@ -10,7 +10,7 @@ body {
   --bg-light01: #ffffff;
   --bg-light02: #E0E0E0;
   --bg-light03: #f3f3f3;
-  --text-light01: #050505;
+  --text-light01: #000b14;
   --text-light02: #01365E;
   --contrast-01: #7dfdff;
   --contrast-02: #b6b9c4;
@@ -202,6 +202,8 @@ input {
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
+select,
 textarea {
   font-family: 'Montserrat', sans-serif;
   height: 3rem;
@@ -217,6 +219,8 @@ textarea {
 
 input[type="text"]:focus,
 input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus,
 textarea:focus {
   outline: none;
   border-bottom: 1px solid var(--contrast-01);
@@ -225,13 +229,17 @@ textarea:focus {
 
 input[type="text"]:focus::placeholder,
 input[type="password"]:focus::placeholder,
+input[type="email"]:focus::placeholder
+select:focus::placeholder,
 textarea:focus::placeholder {
   color: transparent;
   padding-left: 0rem;
 }
 
 input[type="text"]::placeholder,
-input[type="password"]::placeholder {
+input[type="password"]::placeholder,
+input[type="email"]::placeholder,
+select::placeholder {
   font-size: .9rem;
   color: rgb(161, 161, 161);
 }
