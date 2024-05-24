@@ -1,5 +1,5 @@
 // evironment
-const prod = true
+const prod = false
 let url = '';
 url = prod ? 'https://funval-users.onrender.com' :
   'http://localhost:3001'
@@ -45,7 +45,8 @@ export const checkServer = async () => {
     console.log('Server active:', data.success)
   } catch (error) {
     serverCheck.style.display = 'flex';
-    console.log(error.message);
+    console.log('Url of error:', apiTest)
+    console.log('Error thrown checking server:', error.message);
   }
 }
 
