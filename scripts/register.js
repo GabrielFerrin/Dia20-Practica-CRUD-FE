@@ -1,5 +1,6 @@
 const apiUrl = window.env.API_URL_TERTERS;
 const apiUsersUrl = window.env.API_URL_USERS;
+const apiUserSeederUrl = window.env.API_URL_USERS_SEEDER;
 const password = document.querySelector('#password');
 const spinner01 = document.getElementById('spinner01');
 const spinner02 = document.getElementById('spinner02');
@@ -56,7 +57,7 @@ submitBtn.addEventListener('click', async (event) => {
   createWrapper.style.display = 'block';
 
   const form = document.forms[0]
-  const table = 'user' + Date.now();
+  const table = Date.now();
   const data = {
     username: form.username.value,
     password: form.password.value,
@@ -86,7 +87,7 @@ submitBtn.addEventListener('click', async (event) => {
       checkmark02.style.display = 'block'
       // crear base de datos
       spinner04.style.display = 'block'
-      const createRes = await fetch(apiUsersUrl + '/create-user-table', {
+      const createRes = await fetch(apiUserSeederUrl + '/create-user-table', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ table })
@@ -101,7 +102,7 @@ submitBtn.addEventListener('click', async (event) => {
         checkmark03.style.display = 'block'
         if (populate.checked) {
           spinner05.style.display = 'block'
-          const fake = await fetch(apiUsersUrl + '/seed-users', {
+          const fake = await fetch(apiUserSeederUrl + '/seed-users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ table })

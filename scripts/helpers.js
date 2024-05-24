@@ -1,5 +1,5 @@
 // evironment
-const prod = true
+const prod = false
 let url = '';
 url = prod ? 'https://funval-users.onrender.com' :
   'http://localhost:3001'
@@ -9,6 +9,7 @@ window.env.API_URL = url;
 window.env.API_URL_CHECK = url + '/is-alive';
 window.env.API_URL_TERTERS = url + '/testers'
 window.env.API_URL_USERS = url + '/users'
+window.env.API_URL_USERS_SEEDER = url + '/users-seeder'
 
 const apiUrl = window.env.API_URL_TERTERS;
 const user = localStorage.getItem('username');
@@ -19,13 +20,13 @@ export const loging = async () => {
   try {
     if (user && pass) {
       const reqUrl = apiUrl + '/login/?user=' + user + '&pass=' + pass + '';
-      console.log('From login:', reqUrl)
+      // console.log('From login:', reqUrl)
       const rawRes = await fetch(reqUrl, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       })
       const res = await rawRes.json();
-      console.log('Login successful', res)
+      // console.log('Login successful', res)
       return res.success
     }
   } catch (error) {
@@ -42,12 +43,12 @@ export const checkServer = async () => {
     const res = await fetch(apiTest);
     const data = await res.json();
     if (data.success) serverCheck.style.display = 'none'
-    console.log('Url of request:', apiTest)
-    console.log('Server active:', data.success)
+    // console.log('Url of request:', apiTest)
+    // console.log('Server active:', data.success)
   } catch (error) {
     serverCheck.style.display = 'flex';
-    console.log('Url of error:', apiTest)
-    console.log('Error thrown checking server:', error.message);
+    // console.log('Url of error:', apiTest)
+    // console.log('Error thrown checking server:', error.message);
   }
 }
 

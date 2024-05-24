@@ -31,11 +31,6 @@ main {
   gap: .5rem;
 }
 
-#submit-btn:disabled {
-  background-color: var(--disabled-01);
-  color: var(--contrast-01);
-}
-
 #password-error,
 #username-error {
   font-size: .8rem;

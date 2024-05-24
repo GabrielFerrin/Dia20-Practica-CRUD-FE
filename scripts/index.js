@@ -1,3 +1,26 @@
 import { loging } from "./helpers.js";
 
-if(await loging()) window.location.href = 'manage-users.html'
+if(await loging()) {
+  window.location.href = 'manage-users.html'
+} else {
+  document.getElementById('profile-pic').style.display = 'none'
+  document.getElementById('user-name').style.display = 'none'
+}  
+
+const testerUrl = window.env.API_URL_TERTERS
+document.getElementById('submit-btn').addEventListener('click', async (e) => {
+  e.preventDefault()
+  const user = document.getElementById('username').value.trim()
+  const pass = document.getElementById('password').value.trim()
+  try {
+    const rawRes = await fetch(testerUrl + '/login/?user=' + user + '&pass=' + pass)
+    const res = await rawRes.json()
+    if (res.success) {
+      localStorage.setItem('username', user)
+      localStorage.setItem('password', pass)
+      window.location.href = 'manage-users.html'
+    }
+  } catch (error) {
+    console.log('Error thrown:', error)
+  }
+})

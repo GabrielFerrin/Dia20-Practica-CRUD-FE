@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
   <link rel="icon" href="./assets/logo-dark.svg" type="image/svg">
+  <!-- styles -->
   <link rel="stylesheet" href="./styles/main.css">
+  <!-- scripts -->
   <script defer type="module" src="./scripts/helpers.js"></script>
   <script defer src="./scripts/index.js" type="module"></script>
 </head>
@@ -21,9 +23,13 @@
       <img src="./assets/logo-dark.svg" alt="logo" height="45">
       <h1 id="home-title">GABRIEL FERRIN</h1>
     </a>
-    <button id="register-btn" onclick="location.href='./register.html'" class="header-action">
-      Registrarse
-    </button>
+    <div id="user-wrapper">
+      <span id="user-name">User</span>
+      <img src="./assets/profile-pic-01.jpg" alt="Foto del perfil" height="50" id="profile-pic">
+      <button id="register-btn" onclick="location.href='./register.html'" class="header-action">
+        Registrarse
+      </button>
+    </div>
   </header>
   <div id="strip"></div>
   <main>
@@ -48,7 +54,7 @@
         <input type="text" name="username" id="username" required autocomplete="on" placeholder="Nombre de usuario">
         <input type="password" name="password" id="password" required autocomplete="current-password" placeholder="Contraseña"
           minlength="8">
-        <input type="submit"  value="Iniciar sesión">
+        <input type="submit" value="Iniciar sesión" id="submit-btn">
       </form>
     </div>
   </main>

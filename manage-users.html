@@ -6,7 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
   <link rel="icon" href="./assets/logo-dark.svg" type="image/svg">
+  <!-- styles -->
   <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/manage-users.css">
+  <!-- scripts -->
+  <script defer type="module" src="./scripts/helpers.js"></script>
+  <script defer type="module" src="./scripts/manage-users.js"></script>
 </head>
 
 <body>
@@ -19,25 +24,38 @@
       <img src="./assets/logo-dark.svg" alt="logo" height="45">
       <h1 id="home-title">GABRIEL FERRIN</h1>
     </a>
-    <button id="register-btn" class="header-action" onclick="location.href='./index.html'">
-      Cerrar sesión
-    </button>
+    <div id="user-wrapper">
+      <span id="user-name">User</span>
+      <img src="./assets/profile-pic-01.jpg" alt="Foto del perfil" height="50" id="profile-pic">
+      <button id="logout-btn" class="header-action" onclick="location.href='./index.html'">
+        Cerrar sesión
+      </button>
+    </div>
   </header>
   <div id="strip"></div>
   <main id="manage-users">
-    <div class="options">
-      asdf
-      asf
-      asdf
-    </div>
-    <div class="title">
-      asdfasdf
-      asdf
-    </div>
-    <div class="content">
-      <div class="card">
-        
+    <div id="main-header">
+      <div class="title">
+        <h2>Gestión de usuarios</h2>
       </div>
+      <div class="options">
+        <button>Agregar usuario</button>
+        <button>Reiniciar datos</button>
+      </div>
+    </div>
+    <div id="cards-container">
+      <!-- <div class="card">
+        <div class="role-wrapper">Supervisor</div>
+        <div class="circle">
+          <img class="profile-pic" src="./assets/profile-pic-01.jpg" alt="Foto de perfil del usuario" height="150">
+        </div>
+        <h3>Gabriel Ferrin</h3>
+        <p>agferrin@gmail.com</p>
+        <div class="buttons-wrapper">
+          <button class="button2">Editar</button>
+          <button>Eliminar</button>
+        </div>
+      </div> -->
     </div>
   </main>
   <footer>

@@ -4,6 +4,7 @@ body {
   /* theme */
   --bg-dark01: #06243F;
   --bg-dark02: #01365E;
+  --bg-dark03: #00182c;
   --text-dark01: #ffffff;
   --text-dark02: #E0E0E0;
   --bg-light01: #ffffff;
@@ -11,7 +12,9 @@ body {
   --bg-light03: #f3f3f3;
   --text-light01: #050505;
   --text-light02: #01365E;
-  --contrast-01: #3CBEC0;
+  --contrast-01: #7dfdff;
+  --contrast-02: #b6b9c4;
+  --contrast-03: #ff7b00;
   --error-01: #a10000;
   --disabled-01: #E0E0E0;
   /* properties */
@@ -71,6 +74,18 @@ p {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+}
+
+#user-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#profile-pic {
+  border-radius: 50%;
+  border: 2px solid var(--contrast-01);
+  box-shadow: rgba(0, 0, 0, 0.541) 0px 13px 27px -5px, rgb(0, 0, 0) 0px 8px 16px -8px;
 }
 
 #home-title {
@@ -216,10 +231,12 @@ input[type="password"]::placeholder {
   color: rgb(161, 161, 161);
 }
 
-input[type="submit"] {
+/* button type 1 */
+input[type="submit"],
+button {
   background-color: var(--contrast-01);
   border: none;
-  color: var(--bg-light01);
+  color: var(--text-light01);
   border-radius: .2rem;
   height: 3rem;
   font-family: 'Montserrat', sans-serif;
@@ -230,16 +247,56 @@ input[type="submit"] {
   margin-top: .5rem;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+button:hover {
   cursor: pointer;
-  background-color: var(--bg-dark01);
+  background-color: var(--bg-dark02);
+  color: var(--bg-light01);
+  border: 1px solid var(--contrast-01);
 }
 
-input[type="submit"]:active {
+input[type="submit"]:active,
+button:active {
+  background-color: var(--bg-dark03);
+}
+
+input[type="submit"]:disabled {
+  border: none;
+  background-color: var(--disabled-01);
+  color: var(--text-light02);
+  cursor: default;
+}
+
+/* button type 2 */
+.button2 {
+  background-color: var(--bg-dark01);
+  border: 1px solid var(--contrast-01);
+  color: var(--bg-light01);
+}
+
+.button2:hover,
+button:hover {
+  cursor: pointer;
+  background-color: var(--contrast-01);
+  color: var(--text-light01);
+  border: 1px solid var(--contrast-01);
+}
+
+.button2:active,
+button:active {
   background-color: var(--bg-dark02);
 }
 
-input:focus:invalid {
+.button2:disabled {
+  border: none;
+  background-color: var(--disabled-01);
+  color: var(--text-light02);
+  cursor: default;
+}
+
+/*  */
+input:focus:invalid, 
+textarea:focus:invalid {
   border-bottom: 1px solid var(--error-01);
 }
 

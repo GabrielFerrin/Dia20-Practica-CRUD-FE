@@ -1,0 +1,93 @@
+#manage-users {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.card {
+  background-color: var(--bg-dark03);
+  box-shadow: rgba(0, 0, 0, 0.541) 0px 13px 27px -5px, rgb(0, 0, 0) 0px 8px 16px -8px;
+  gap: 1rem;
+  width: 300px;
+  border-radius: .4rem;
+  padding: 1.5rem;
+  padding-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--bg-light02);
+  position: relative;
+}
+
+.role-wrapper {
+  font-weight: 600;
+  position: absolute;
+  top: 5%;
+  left: 7%;
+  width: 110px;
+  text-align: center;
+  background-color: var(--contrast-03);
+  color: var(--text-dark01);
+  padding: .2rem 0;
+  padding-bottom: .4rem;
+  border-radius: .2rem;
+}
+
+.circle {
+  border: 1px solid var(--contrast-01);
+  border-radius: 50%;
+  padding: .8rem;
+  padding-bottom: .6rem;
+}
+
+.profile-pic {
+  border-radius: 50%;
+}
+
+.card h3 {
+  margin-top: .5rem;
+  font-weight: 600;
+  font-size: 1.7rem;
+}
+
+.buttons-wrapper {
+  display: flex;
+  gap: .4rem;
+  width: 90%;
+}
+
+#manage-users h2 {
+  font-size: 2rem;
+}
+
+.options {
+  display: flex;
+  gap: .5rem;
+}
+
+.options button {
+  width: 150px;
+}
+
+button:hover {
+  background-color: var(--bg-dark02);
+  color: var(--bg-light01);
+  border: 1px solid var(--contrast-01);
+}
+
+button:active {
+  background-color: var(--bg-dark03);
+}
