@@ -1,4 +1,4 @@
-const prod = false
+const prod = true
 prod ? ulr = 'https://funval-users.onrender.com' : 
 url = 'http://localhost:3001'
 
