@@ -19,11 +19,11 @@
     <img src="./assets/warning.svg" alt="Señal de alerta" height="27">
   </div>
   <header id="nav">
-    <div id="nav-wrapper">
+    <a id="nav-wrapper" href="./index.html">
       <img src="./assets/logo-dark.svg" alt="logo" height="45">
       <h1 id="home-title">GABRIEL FERRIN</h1>
-    </div>
-    <button id="register-btn" onclick="location.href='./index.html'">
+    </a>
+    <button id="goback-btn" onclick="location.href='./index.html'" class="header-action">
       Volver
     </button>
   </header>
@@ -34,7 +34,7 @@
       <span>Completa los campos para registrarte</span>
       <form method="get" name="login" onSubmit="return customFormAction()">
         <!-- username -->
-        <input type="text" name="username" id="username" required autocomplete="on" placeholder="Nombre de usuario" value ="gabriel">
+        <input type="text" name="username" id="username" required autocomplete="on" placeholder="Nombre de usuario">
         <div id="spinner02" class="loadingspinner"></div>
         <span id="checkmark01">&#x2713;</span>
         <span id="username-error" class="error-span">
@@ -42,15 +42,15 @@
         </span>
         <!-- password -->
         <input type="password" name="password" id="password" required autocomplete="current-password"
-          placeholder="Contraseña" minlength="8" value ="12345678">
+          placeholder="Contraseña" minlength="8">
         <span id="password-error" class="error-span">
           Mínimo 8 caracteres
         </span>
         <!-- code -->
-        <input type="text" name="code" id="code" autocomplete="off" required placeholder="Código" value ="12345678">
+        <input type="text" name="code" id="code" autocomplete="off" required placeholder="Código">
         <!-- comment -->
         <textarea type="text" name="comment" id="comment" autocomplete="off"
-          placeholder="Dinos quién eres y porqué deseas probar el proyecto.">Comentario</textarea>
+          placeholder="Dinos quién eres y porqué deseas probar el proyecto."></textarea>
         <!-- populate checkbox -->
         <div id="populate-wrapper">
           <input type="checkbox" name="populate" id="populate">

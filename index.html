@@ -7,7 +7,9 @@
   <title>Registro</title>
   <link rel="icon" href="./assets/logo-dark.svg" type="image/svg">
   <link rel="stylesheet" href="./styles/style.css">
-  <script defer src="./scripts/config.js"></script>
+  <script src="./scripts/config.js"></script>
+  <script src="./scripts/helpers.js" type="module"></script>
+  <script src="./scripts/index.js" type="module"></script>
   <script defer src="./scripts/script.js"></script>
 </head>
 
@@ -17,11 +19,11 @@
     <img src="./assets/warning.svg" alt="Señal de alerta" height="27">
   </div>
   <header id="nav">
-    <div id="nav-wrapper">
+    <a id="nav-wrapper" href="#">
       <img src="./assets/logo-dark.svg" alt="logo" height="45">
       <h1 id="home-title">GABRIEL FERRIN</h1>
-    </div>
-    <button id="register-btn" onclick="location.href='./register.html'">
+    </a>
+    <button id="register-btn" onclick="location.href='./register.html'" class="header-action">
       Registrarse
     </button>
   </header>

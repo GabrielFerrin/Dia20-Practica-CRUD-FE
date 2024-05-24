@@ -75,7 +75,7 @@ p {
   font-size: 1.4rem;
 }
 
-#register-btn {
+.header-action {
   background-color: var(--bg-dark01);
   border: 1px solid var(--contrast-01);
   color: var(--bg-light01);

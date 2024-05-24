@@ -54,7 +54,7 @@ const submitBtn = document.getElementById('submit-btn');
 submitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
   createWrapper.style.display = 'block';
-  
+
   const form = document.forms[0]
   const table = 'user' + Date.now();
   const data = {
@@ -114,17 +114,14 @@ submitBtn.addEventListener('click', async (event) => {
             throw new Error('Error:', JSON.stringify(fakeData))
           } else {
             checkmark04.style.display = 'block'
-            redirect.style.display = 'block'
-            setTimeout(() => {
-              window.location.href = 'manage-users.html'
-            }, 15000);
           }
-        } else {
-          redirect.style.display = 'block'
-          setTimeout(() => {
-            window.location.href = 'manage-users.html'
-          }, 15000);
         }
+        redirect.style.display = 'block'
+        setTimeout(() => {
+          localStorage.setItem('username', form.username.value)
+          localStorage.setItem('password', form.password.value)
+          window.location.href = 'manage-users.html'
+        }, 1500);
       }
     }
   } catch (error) {
