@@ -1,5 +1,9 @@
-window.env = window.env || {};
-window.env.API_URL_CHECK = 'http://localhost:3001/is-alive';
-window.env.API_URL = 'http://localhost:3001';
-window.env.API_URL_TERTERS = 'http://localhost:3001/testers'
-window.env.API_URL_USERS = 'http://localhost:3001/users'
+const prod = false
+prod ? ulr = 'https://funval-users.onrender.com' : 
+url = 'http://localhost:3001'
+
+  window.env = window.env || {};
+  window.env.API_URL = url;
+  window.env.API_URL_CHECK = url + '/is-alive';
+  window.env.API_URL_TERTERS = url +'/testers'
+  window.env.API_URL_USERS = url + '/users'
