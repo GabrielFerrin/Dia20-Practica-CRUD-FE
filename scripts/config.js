@@ -1,6 +1,7 @@
 const prod = true
-prod ? ulr = 'https://funval-users.onrender.com' : 
-url = 'http://localhost:3001'
+let url = '';
+url = prod ? 'https://funval-users.onrender.com' : 
+'http://localhost:3001'
 
   window.env = window.env || {};
   window.env.API_URL = url;
