@@ -100,14 +100,18 @@ getUsers();
 // create/update user
 const addUserBtn = document.querySelector('#add-user-btn');
 addUserBtn.addEventListener('click', () => {
-  document.getElementById('users').style.display = 'block';
+  document.getElementById('users').style.display = 'flex';
 })
 
 // close form
+const cancelBtn = document.querySelector('#cancel-btn');
 const closeBtn = document.querySelector('#close-icon');
 closeBtn.addEventListener('click', () => {
   document.getElementById('user-form').reset();
   document.getElementById('users').style.display = 'none';
+})
+cancelBtn.addEventListener('click', () => {
+  closeBtn.click();
 })
 
 // profile picture
@@ -122,19 +126,65 @@ imageInput.addEventListener('change', (event) => {
   imageElement.style = 'border-radius: 50%';
 })
 
-// form settings
+/* FORM VALIDATION */
+
+// timeout to check email validity
+let emailAvailable = false;
+const emailSpinner = document.getElementById('email-spinner');
 const form = document.getElementById('user-form');
 const submitBtn = document.getElementById('submit-btn');
-Array(...form.elements).forEach(element => {
+const spanError = document.getElementById('email-error');
+const password = document.getElementById('password');
+const checkMark = document.getElementById('checkmark01');
+let timoutId;
+const checkEmailAvailable = async () => {
+  const email = document.getElementById('email').value
+  const form = document.forms[0]
+  const user = localStorage.getItem('username')
+  const pass = localStorage.getItem('password')
+  const url = apiUrl + '/check-email/?user=' + user + '&pass=' + pass + '&email=' + email
+  try {
+    const rawRes = await fetch(url);
+    const res = await rawRes.json();
+    emailSpinner.style = 'display: none'
+    if (res.success) {
+      spanError.style = 'display: none'
+      emailAvailable = true
+      checkMark.style = 'display: block'
+    } else {
+      spanError.style = 'display: block'
+      emailAvailable = false
+      submitBtn.disabled = true
+      checkMark.style = 'display: none'
+    }
+    form.checkValidity() && emailAvailable ?
+      submitBtn.disabled = false : submitBtn.disabled = true
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+// check validity
+Array(...form.elements).forEach((element) => {
   const avoid = ['submit', 'button', 'select-one'];
   if (!avoid.includes(element.type)) {
-    element.addEventListener('input', () => {
-      console.log(form.checkValidity())
-      if (form.checkValidity()) {
-        submitBtn.disabled = false
+    element.addEventListener('input', async (event) => {
+      // check email availability
+      const form = document.forms[0]
+      submitBtn.disabled = true
+      if (event.target.id === 'email' && event.target.value.length) {
+        spanError.style.display = 'none';
+        emailSpinner.style = 'display: block'
+        checkMark.style = 'display: none'
+        clearTimeout(timoutId);
+        timoutId = setTimeout(checkEmailAvailable, 1000);
       } else {
-        submitBtn.disabled = true
+        // check validity
+        form.checkValidity() && emailAvailable ?
+          submitBtn.disabled = false : submitBtn.disabled = true
       }
+      // if (password.value.length < 8) passwordError.style.display = 'block';
+      // else passwordError.style.display = 'none';
     })
   }
 })
@@ -142,30 +192,32 @@ Array(...form.elements).forEach(element => {
 submitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
   const form = document.getElementById('user-form');
-    // Get the form data
-    const formData = new FormData(form);
-    console.log(form.role)
-    // Create a new object to store the form data
-    const data = {};
-  
-    // Iterate over the form data and store it in the object
-    for (const [key, value] of formData.entries()) {
-      data[key] = value;
+  const formData = new FormData();
+  for (const [key, value] of Object.entries(form.elements)) {
+    if (value.type === 'file') {
+      formData.append(value.name, value.files[0]);
+    } else {
+      value.name === '' ? null :
+        formData.append(value.name, value.value);
     }
-      // Display the form data to the user
-  console.log(JSON.stringify(data));
-  // const url = apiUrl + '/?user=' + localStorage.getItem('username') +
-  //   '&pass=' + localStorage.getItem('password') + ''
-  // const rawRes = await fetch(url, {
-  //   method: 'POST',
-  //   body: formData
-  // })
-  // const res = await rawRes.json();
-  // if (res.success) {
-  //   getUsers();
-  //   document.getElementById('user-form').reset();
-  //   document.getElementById('users').style.display = 'none';
-  // } else {
-  //   alert(res.message)
-  // }
+  }
+
+  const data = JSON.stringify(Object.fromEntries(formData))
+
+  const user = localStorage.getItem('username');
+  const pass = localStorage.getItem('password');
+  const url = apiUrl + '/?user=' + user + '&pass=' + pass + ''
+  const rawRes = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(Object.fromEntries(formData))
+  })
+  const res = await rawRes.json();
+  if (res.success) {
+    document.getElementById('user-form').reset();
+    document.getElementById('users').style.display = 'none';
+    getUsers();
+  } else {
+    alert(res.message)
+  }
 })

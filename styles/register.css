@@ -5,36 +5,13 @@ main {
 }
 
 #wrapper02 {
-  margin-top: 1rem;
-}
-
-.loadingspinner {
-	pointer-events: none;
-	width: 1rem;
-	height: 1rem;
-	border: 0.1rem solid transparent;
-	border-color: var(--text-dark02);
-	border-top-color: #3E67EC;
-	border-radius: 50%;
-	animation: loadingspin 1s linear infinite;
-}
-
-@keyframes loadingspin {
-	100% {
-			transform: rotate(360deg)
-	}
+	margin-top: 1rem;
 }
 
 .wrapper02-1 {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-}
-
-#password-error,
-#username-error {
-  font-size: .8rem;
-  align-self: flex-start;
+	display: flex;
+	align-items: center;
+	gap: .5rem;
 }
 
 #error-list {
@@ -42,35 +19,7 @@ main {
 	list-style: none;
 	padding: 0;
 	color: var(--error-01);
-  font-weight: 500;
-}
-
-#spinner02,
-#spinner03,
-#spinner04,
-#spinner05,
-#checkmark01,
-#checkmark02,
-#checkmark03,
-#checkmark04,
-#exmark02,
-#exmark03,
-#exmark04 {
-	position: absolute;
-	right: -6%;
-	top: 8%;
-	display: none;
-}
-
-#checkmark01,
-#checkmark02,
-#checkmark03,
-#checkmark04,
-#checkmark05 {
-	font-weight: 900;
-	color: green;
-	font-size: 1.4rem;
-	top: 5%;
+	font-weight: 500;
 }
 
 #populate-wrapper {
@@ -100,23 +49,6 @@ main {
 	display: flex;
 	gap: .5rem;
 	padding-left: 1.5rem;
-}
-
-#checkmark02,
-#checkmark03,
-#checkmark04 {
-	top: -25%;
-	left: 0;
-}
-
-#spinner03,
-#spinner04,
-#spinner05,
-#exmark02,
-#exmark03,
-#exmark04 {
-	top: 0;
-	left: 0;
 }
 
 #wrapper02-2 #all-ready-redirecting {

@@ -135,10 +135,10 @@ const checkUsernameAvailable = async () => {
   const username = document.querySelector('#username').value
   const form = document.forms[0]
   try {
-    const res = await fetch(apiUrl + '/available/' + username)
-    const data = await res.json()
+    const rawRes = await fetch(apiUrl + '/available/' + username)
+    const res = await rawRes.json()
     spinner02.style.display = 'none';
-    if (data.success) {
+    if (res.success) {
       usernameError.style.display = 'none';
       checkmark01.style.display = 'block';
       usernameAvailable = true

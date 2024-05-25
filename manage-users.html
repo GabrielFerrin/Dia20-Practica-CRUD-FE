@@ -23,16 +23,28 @@
       <!-- form -->
       <form name="user" id="user-form">
         <div id="form-left-side">
-          <input type="text" name="name" id="name" required autocomplete="on" placeholder="Nombres">
-          <input type="email" name="email" id="email" required autocomplete="on" placeholder="Correo">
-          <input type="password" name="password" id="password" required autocomplete="on" placeholder="Nueva contraseña" pattern=".{8,}" title="La contraseña debe contener al menos 8 caracteres">
-          <select name="role" id="role" required autocomplete="on" placeholder="Rol">
-            <option value="Supervisor" selected>Supervisor</option>
-            <option value="Controller">Controller</option>
-            <option value="Maestro">Maestro</option>
-          </select>
+          <input type="text" name="name" id="name" required autocomplete="on" placeholder="Nombres"
+            value="Gabriel Ferrin">
+          <div id="email-container">
+            <input type="email" name="email" id="email" required autocomplete="on" placeholder="Correo"
+              value="john.doe@example.com">
+            <span id="checkmark01">&#x2713;</span>
+            <div id="email-spinner" class="loadingspinner"></div>
+          </div>
+          <span id="email-error" class="error-span">
+            El correo se usó y no está disponible
+          </span>
+          <input type="password" name="password" id="password" required autocomplete="on" placeholder="Nueva contraseña"
+            pattern=".{8,}" title="La contraseña debe contener al menos 8 caracteres" value="12345678">
+          <div id="select-wrapper">
+            <select name="role" id="role" required autocomplete="on" placeholder="Rol">
+              <option value="Maestro" selected>Maestro</option>
+              <option value="Controller">Controller</option>
+              <option value="Supervisor">Supervisor</option>
+            </select>
+          </div>
           <div id="user-btn-wrap">
-            <input type="submit" value="Actualizar" id="submit-btn" disabled class="button2">
+            <input type="submit" value="Actualizar" id="submit-btn" class="button2" disabled>
             <button type="button" id="cancel-btn">
               Cancelar
             </button>
@@ -41,7 +53,8 @@
         <div id="form-right-side">
           <div id="pic-container">
             <input type="file" name="picture" id="picture" accept="image/*">
-            <img src="./assets/pic-placeholder.svg" alt="Placeholder de foto de perfil" height="280" id="pic-placeholder">
+            <img src="./assets/pic-placeholder.svg" alt="Placeholder de foto de perfil" height="250"
+              id="pic-placeholder">
           </div>
         </div>
       </form>

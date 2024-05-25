@@ -8,6 +8,8 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.712);
@@ -24,6 +26,8 @@ body {
   color: var(--text-light01);
   border-radius: .4rem;
   width: calc(100% - 4rem);
+  height: 380px;
+  max-width: 1000px;
   padding: 2rem;
 }
 
@@ -38,7 +42,7 @@ form {
   border-radius: .4rem;
   width: 310px;
   min-width: 310px;
-  height: 310px;
+  height: 290px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,6 +82,25 @@ input {
 #user-btn-wrap {
   display: flex;
   gap: .5rem;
+}
+
+#form-left-side {
+  flex-grow: 1;
+}
+
+#checkmark01 {
+  right: 3%;
+  top: 14px;
+}
+
+#email-spinner {
+  position: absolute;
+  top: 20px;
+  right: 3%;
+}
+
+#email-container {
+  position: relative;
 }
 
 /* button type 2 */
