@@ -82,7 +82,7 @@ const renderUsers = (users) => {
   });
 }
 
-const getUsers = async() => {
+const getUsers = async () => {
   try {
     const user = localStorage.getItem('username');
     const pass = localStorage.getItem('password');
@@ -98,11 +98,74 @@ const getUsers = async() => {
 getUsers();
 
 // create/update user
-const closeBtn = document.querySelector('#close-icon');
 const addUserBtn = document.querySelector('#add-user-btn');
 addUserBtn.addEventListener('click', () => {
-  document.querySelector('#users').style.display = 'block';
+  document.getElementById('users').style.display = 'block';
 })
+
+// close form
+const closeBtn = document.querySelector('#close-icon');
 closeBtn.addEventListener('click', () => {
-  document.querySelector('#users').style.display = 'none';
+  document.getElementById('user-form').reset();
+  document.getElementById('users').style.display = 'none';
+})
+
+// profile picture
+const picPlaceholder = document.getElementById('form-right-side');
+picPlaceholder.addEventListener('click', (event) => {
+  imageInput.click();
+})
+const imageElement = document.getElementById('pic-placeholder');
+const imageInput = document.getElementById('picture');
+imageInput.addEventListener('change', (event) => {
+  imageElement.src = URL.createObjectURL(event.target.files[0]);
+  imageElement.style = 'border-radius: 50%';
+})
+
+// form settings
+const form = document.getElementById('user-form');
+const submitBtn = document.getElementById('submit-btn');
+Array(...form.elements).forEach(element => {
+  const avoid = ['submit', 'button', 'select-one'];
+  if (!avoid.includes(element.type)) {
+    element.addEventListener('input', () => {
+      console.log(form.checkValidity())
+      if (form.checkValidity()) {
+        submitBtn.disabled = false
+      } else {
+        submitBtn.disabled = true
+      }
+    })
+  }
+})
+
+submitBtn.addEventListener('click', async (event) => {
+  event.preventDefault();
+  const form = document.getElementById('user-form');
+    // Get the form data
+    const formData = new FormData(form);
+    console.log(form.role)
+    // Create a new object to store the form data
+    const data = {};
+  
+    // Iterate over the form data and store it in the object
+    for (const [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+      // Display the form data to the user
+  console.log(JSON.stringify(data));
+  // const url = apiUrl + '/?user=' + localStorage.getItem('username') +
+  //   '&pass=' + localStorage.getItem('password') + ''
+  // const rawRes = await fetch(url, {
+  //   method: 'POST',
+  //   body: formData
+  // })
+  // const res = await rawRes.json();
+  // if (res.success) {
+  //   getUsers();
+  //   document.getElementById('user-form').reset();
+  //   document.getElementById('users').style.display = 'none';
+  // } else {
+  //   alert(res.message)
+  // }
 })

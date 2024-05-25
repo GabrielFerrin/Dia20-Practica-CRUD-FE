@@ -21,18 +21,28 @@
       <span id="close-icon">&times;</span>
       <h2>Actualizar datos de susuarios</h2>
       <!-- form -->
-      <form name="user">
+      <form name="user" id="user-form">
         <div id="form-left-side">
           <input type="text" name="name" id="name" required autocomplete="on" placeholder="Nombres">
-          <input type="email" name="email" id="email" required autocomplete="on" placeholder="correo">
-          <input type="password" name="password" id="password" required autocomplete="on" placeholder="Nueva contraseña">
+          <input type="email" name="email" id="email" required autocomplete="on" placeholder="Correo">
+          <input type="password" name="password" id="password" required autocomplete="on" placeholder="Nueva contraseña" pattern=".{8,}" title="La contraseña debe contener al menos 8 caracteres">
           <select name="role" id="role" required autocomplete="on" placeholder="Rol">
-            <option value="Supervisor">Maestro</option>
+            <option value="Supervisor" selected>Supervisor</option>
             <option value="Controller">Controller</option>
-            <option value="Maestro">Supervisor</option>
+            <option value="Maestro">Maestro</option>
           </select>
+          <div id="user-btn-wrap">
+            <input type="submit" value="Actualizar" id="submit-btn" disabled class="button2">
+            <button type="button" id="cancel-btn">
+              Cancelar
+            </button>
+          </div>
         </div>
         <div id="form-right-side">
+          <div id="pic-container">
+            <input type="file" name="picture" id="picture" accept="image/*">
+            <img src="./assets/pic-placeholder.svg" alt="Placeholder de foto de perfil" height="280" id="pic-placeholder">
+          </div>
         </div>
       </form>
     </div>

@@ -258,6 +258,7 @@ button {
   transition: background-color .3s;
   width: 100%;
   margin-top: .5rem;
+  box-sizing: border-box;
 }
 
 input[type="submit"]:hover,
@@ -266,6 +267,7 @@ button:hover {
   background-color: var(--bg-dark02);
   color: var(--bg-light01);
   border: 1px solid var(--contrast-01);
+  box-sizing: border-box;
 }
 
 input[type="submit"]:active,
@@ -281,13 +283,13 @@ input[type="submit"]:disabled {
 }
 
 /* button type 2 */
-.button2 {
+#user-btn-wrap .button2 {
   background-color: var(--bg-dark01);
   border: 1px solid var(--contrast-01);
   color: var(--bg-light01);
 }
 
-.button2:hover,
+#user-btn-wrap .button2:hover,
 button:hover {
   cursor: pointer;
   background-color: var(--contrast-01);
@@ -295,12 +297,12 @@ button:hover {
   border: 1px solid var(--contrast-01);
 }
 
-.button2:active,
+#user-btn-wrap .button2:active,
 button:active {
   background-color: var(--bg-dark02);
 }
 
-.button2:disabled {
+#user-btn-wrap .button2:disabled {
   border: none;
   background-color: var(--disabled-01);
   color: var(--text-light02);
