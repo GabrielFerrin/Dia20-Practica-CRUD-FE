@@ -1,5 +1,5 @@
 // evironment
-const prod = false
+const prod = true
 let url = '';
 url = prod ? 'https://funval-users.onrender.com' :
   'http://localhost:3001'
