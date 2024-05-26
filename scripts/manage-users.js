@@ -36,11 +36,9 @@ const renderUsers = (users) => {
     profilePic.classList.add('profile-pic');
     profilePic.alt = 'Foto de perfil del usuario';
     profilePic.height = '150';
-    let pic = '';
-    if ((i + 1) % 1 === 0) pic = './assets/profile-pic-04.jpg';
-    if ((i + 1) % 2 === 0) pic = './assets/profile-pic-03.jpg';
-    if ((i + 1) % 3 === 0) pic = './assets/profile-pic-02.jpg';
-    if ((i + 1) % 4 === 0) pic = './assets/profile-pic-01.jpg';
+    const username = localStorage.getItem('username');
+    const pass = localStorage.getItem('password');
+    let pic = `${apiUrl}/picture?user=${username}&pass=${pass}&id=${user.user_id}`;
     profilePic.src = pic;
     circle.appendChild(profilePic);
     // name
@@ -98,9 +96,11 @@ const getUsers = async () => {
 getUsers();
 
 // create/update user
+const userForm = document.getElementById('users')
 const addUserBtn = document.querySelector('#add-user-btn');
 addUserBtn.addEventListener('click', () => {
-  document.getElementById('users').style.display = 'flex';
+  userForm.style.display = 'flex';
+  checkMark.style = 'display: none';
 })
 
 // close form
@@ -108,7 +108,7 @@ const cancelBtn = document.querySelector('#cancel-btn');
 const closeBtn = document.querySelector('#close-icon');
 closeBtn.addEventListener('click', () => {
   document.getElementById('user-form').reset();
-  document.getElementById('users').style.display = 'none';
+  userForm.style.display = 'none';
 })
 cancelBtn.addEventListener('click', () => {
   closeBtn.click();
@@ -191,34 +191,29 @@ Array(...form.elements).forEach((element) => {
 
 submitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
-  const form = document.getElementById('user-form');
+  // prepare data
+  const form = document.forms[0]
   const formData = new FormData();
-  for (const [key, value] of Object.entries(form.elements)) {
-    if (value.type === 'file') {
-      formData.append(value.name, value.files[0]);
-    } else {
-      value.name === '' ? null :
-        formData.append(value.name, value.value);
-    }
-  }
-
-  const data = JSON.stringify(Object.fromEntries(formData))
-
-  const user = localStorage.getItem('username');
-  const pass = localStorage.getItem('password');
-  const url = apiUrl + '/?user=' + user + '&pass=' + pass + ''
+  formData.append('name', form.elements.name.value);
+  formData.append('email', form.elements.email.value);
+  formData.append('password', form.elements.password.value);
+  formData.append('role', form.elements.role.value);
+  formData.append('picture', form.elements.picture.files[0]);
+  const user = localStorage.getItem('username')
+  const pass = localStorage.getItem('password')
+  const url = `${apiUrl}?user=${user}&pass=${pass}`;
+  // send
   const rawRes = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(Object.fromEntries(formData))
-  })
+    body: formData
+  });
   const res = await rawRes.json();
-  
   if (res.success) {
-    // document.getElementById('user-form').reset();
-    // document.getElementById('users').style.display = 'none';
-    // getUsers();
-  } else {
-    alert(res.message)
+    userForm.style.display = 'none';
+    form.reset(); // TODO: not working
+    form.elements.picture.value = '';
+    imageElement.src = './assets/pic-placeholder.svg';
+    imageElement.style = 'border-radius: none';
+    getUsers();
   }
 })

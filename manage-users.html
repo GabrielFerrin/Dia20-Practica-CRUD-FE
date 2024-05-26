@@ -23,11 +23,9 @@
       <!-- form -->
       <form name="user" id="user-form">
         <div id="form-left-side">
-          <input type="text" name="name" id="name" required autocomplete="on" placeholder="Nombres"
-            value="Gabriel Ferrin">
+          <input type="text" name="name" id="name" required autocomplete="on" placeholder="Nombres">
           <div id="email-container">
-            <input type="email" name="email" id="email" required autocomplete="on" placeholder="Correo"
-              value="john.doe@example.coma">
+            <input type="email" name="email" id="email" required autocomplete="on" placeholder="Correo">
             <span id="checkmark01">&#x2713;</span>
             <div id="email-spinner" class="loadingspinner"></div>
           </div>
@@ -35,7 +33,7 @@
             Otro usuario ya utilizó este correo
           </span>
           <input type="password" name="password" id="password" required autocomplete="on" placeholder="Nueva contraseña"
-            pattern=".{8,}" title="La contraseña debe contener al menos 8 caracteres" value="12345678">
+            pattern=".{8,}" title="La contraseña debe contener al menos 8 caracteres" >
           <div id="select-wrapper">
             <select name="role" id="role" required autocomplete="on" placeholder="Rol">
               <option value="Maestro" selected>Maestro</option>
@@ -54,7 +52,7 @@
           <div id="pic-container">
             <input type="file" name="picture" id="picture" accept="image/*">
             <img src="./assets/pic-placeholder.svg" alt="Placeholder de foto de perfil" height="250"
-              id="pic-placeholder">
+              width="250" id="pic-placeholder">
           </div>
         </div>
       </form>
