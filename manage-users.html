@@ -33,7 +33,7 @@
             Otro usuario ya utilizó este correo
           </span>
           <input type="password" name="password" id="password" required autocomplete="on" placeholder="Nueva contraseña"
-            pattern=".{8,}" title="La contraseña debe contener al menos 8 caracteres" >
+            pattern=".{8,}" title="La contraseña debe contener al menos 8 caracteres">
           <div id="select-wrapper">
             <select name="role" id="role" required autocomplete="on" placeholder="Rol">
               <option value="Maestro" selected>Maestro</option>
@@ -42,7 +42,7 @@
             </select>
           </div>
           <div id="user-btn-wrap">
-            <input type="submit" value="Actualizar" id="submit-btn" class="button2" disabled>
+            <input type="submit" value="Agregar" id="submit-btn" class="button2" disabled>
             <button type="button" id="cancel-btn">
               Cancelar
             </button>
@@ -51,8 +51,9 @@
         <div id="form-right-side">
           <div id="pic-container">
             <input type="file" name="picture" id="picture" accept="image/*">
-            <img src="./assets/pic-placeholder.svg" alt="Placeholder de foto de perfil" height="250"
-              width="250" id="pic-placeholder">
+            <img src="./assets/pic-placeholder.svg" alt="Placeholder de foto de perfil" height="250" width="250"
+              id="pic-placeholder">
+            <span>Relación 1:1 recomendada</span>
           </div>
         </div>
       </form>
@@ -71,7 +72,7 @@
     </a>
     <div id="user-wrapper">
       <span id="user-name">User</span>
-      <img src="./assets/profile-pic-01.jpg" alt="Foto del perfil" height="50" id="profile-pic">
+      <!-- <img src="./assets/profile-pic-01.jpg" alt="Foto del perfil" height="50" id="profile-pic"> -->
       <button id="logout-btn" class="header-action" onclick="location.href='./index.html'">
         Cerrar sesión
       </button>
@@ -86,7 +87,7 @@
       </div>
       <div class="options">
         <button id="add-user-btn">Agregar usuario</button>
-        <button>Reiniciar datos</button>
+        <!-- <button>Reiniciar datos</button> -->
       </div>
     </div>
     <div id="cards-container">

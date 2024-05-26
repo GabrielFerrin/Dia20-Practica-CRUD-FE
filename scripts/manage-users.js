@@ -7,6 +7,7 @@ if (!loging()) {
 }
 
 const apiUrl = window.env.API_URL_USERS;
+const apiBaseUrl = window.env.API_URL
 const logoutBtn = document.querySelector('#logout-btn');
 logoutBtn.addEventListener('click', () => {
   localStorage.removeItem('username');
@@ -36,9 +37,16 @@ const renderUsers = (users) => {
     profilePic.classList.add('profile-pic');
     profilePic.alt = 'Foto de perfil del usuario';
     profilePic.height = '150';
+    profilePic.width = '150';
+    profilePic.style = 'object-fit: cover;'
     const username = localStorage.getItem('username');
     const pass = localStorage.getItem('password');
-    let pic = `${apiUrl}/picture?user=${username}&pass=${pass}&id=${user.user_id}`;
+    let pic = '';
+    if (user.picture === 'local') {
+      pic = `./assets/${user.name.split(' ')[0]}.jpg`;
+    } else {
+      pic = `${apiUrl}/picture?user=${username}&pass=${pass}&id=${user.user_id}`;
+    }
     profilePic.src = pic;
     circle.appendChild(profilePic);
     // name
@@ -128,6 +136,19 @@ imageInput.addEventListener('change', (event) => {
 
 /* FORM VALIDATION */
 
+// check storage size
+const checkStorageSpace = async () => {
+  try {
+    const rawRes = await fetch(apiBaseUrl + '/check-storage-size');
+    const res = await rawRes.json();
+    if (res.success) return res.folderSize
+    else throw new Error(JSON.stringify(res))
+  } catch (error) { 
+    console.log('Error thrown:', error)
+    throw new Error(JSON.stringify(error)) 
+  }
+}
+
 // timeout to check email validity
 let emailAvailable = false;
 const emailSpinner = document.getElementById('email-spinner');
@@ -160,7 +181,7 @@ const checkEmailAvailable = async () => {
     form.checkValidity() && emailAvailable ?
       submitBtn.disabled = false : submitBtn.disabled = true
   } catch (error) {
-    console.log(error.message)
+    console.log(error)
   }
 }
 
@@ -191,29 +212,44 @@ Array(...form.elements).forEach((element) => {
 
 submitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
-  // prepare data
-  const form = document.forms[0]
-  const formData = new FormData();
-  formData.append('name', form.elements.name.value);
-  formData.append('email', form.elements.email.value);
-  formData.append('password', form.elements.password.value);
-  formData.append('role', form.elements.role.value);
-  formData.append('picture', form.elements.picture.files[0]);
-  const user = localStorage.getItem('username')
-  const pass = localStorage.getItem('password')
-  const url = `${apiUrl}?user=${user}&pass=${pass}`;
-  // send
-  const rawRes = await fetch(url, {
-    method: 'POST',
-    body: formData
-  });
-  const res = await rawRes.json();
-  if (res.success) {
-    userForm.style.display = 'none';
-    form.reset(); // TODO: not working
-    form.elements.picture.value = '';
-    imageElement.src = './assets/pic-placeholder.svg';
-    imageElement.style = 'border-radius: none';
-    getUsers();
+  // check storage space
+  try {
+    const folderSize = await checkStorageSpace();
+    console.log('folderSize:', folderSize)
+    if (folderSize > 9000) {
+      console.log('folderSize:', folderSize)
+      alert('No queda espacio en el servidor. Esperamos resolverlo pronto.');
+      return
+    }
+    // prepare data
+    const form = document.forms[0]
+    const formData = new FormData();
+    formData.append('name', form.elements.name.value);
+    formData.append('email', form.elements.email.value);
+    formData.append('password', form.elements.password.value);
+    formData.append('role', form.elements.role.value);
+    formData.append('picture', form.elements.picture.files[0]);
+    const user = localStorage.getItem('username')
+    const pass = localStorage.getItem('password')
+    const url = `${apiUrl}?user=${user}&pass=${pass}`;
+    // send
+    const rawRes = await fetch(url, {
+      method: 'POST',
+      body: formData
+    });
+    const res = await rawRes.json();
+    console.log('res:', res)
+    if (res.success) {
+      userForm.style.display = 'none';
+      form.reset(); // TODO: not working
+      form.elements.picture.value = '';
+      imageElement.src = './assets/pic-placeholder.svg';
+      imageElement.style = 'border-radius: none';
+      getUsers();
+    } else {
+      throw new Error(res.message)
+    }
+  } catch (error) {
+    alert(error)
   }
 })

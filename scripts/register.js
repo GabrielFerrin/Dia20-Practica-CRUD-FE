@@ -68,6 +68,7 @@ submitBtn.addEventListener('click', async (event) => {
   try {
     accountUpdate.style.display = 'block'
     spinner03.style.display = 'block'
+    spinner03.scrollIntoView({ behavior: 'smooth' });
     const res = await fetch(apiUrl + '/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -87,6 +88,7 @@ submitBtn.addEventListener('click', async (event) => {
       checkmark02.style.display = 'block'
       // crear base de datos
       spinner04.style.display = 'block'
+      spinner04.scrollIntoView({ behavior: 'smooth' });
       const createRes = await fetch(apiUserSeederUrl + '/create-user-table', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -110,6 +112,7 @@ submitBtn.addEventListener('click', async (event) => {
           const fakeData = await fake.json()
           console.log('fakeData:', fakeData)
           spinner05.style.display = 'none'
+          spinner05.scrollIntoView({ behavior: 'smooth' });
           if (!fakeData.success) {
             exmark04.style.display = 'block'
             throw new Error('Error:', JSON.stringify(fakeData))

@@ -42,12 +42,22 @@ form {
   border-radius: .4rem;
   width: 310px;
   min-width: 310px;
-  height: 290px;
+  height: 296px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+#pic-placeholder {
+  object-fit: cover;
+}
+
+#pic-container {
+  text-align: center;
+  font-size: .8rem;
+  margin-bottom: -20px;
 }
 
 input {

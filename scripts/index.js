@@ -3,8 +3,8 @@ import { loging } from "./helpers.js";
 if(await loging()) {
   window.location.href = 'manage-users.html'
 } else {
-  document.getElementById('profile-pic').style.display = 'none'
-  document.getElementById('user-name').style.display = 'none'
+  // document.getElementById('profile-pic').style.display = 'none'
+  // document.getElementById('user-name').style.display = 'none'
 }  
 
 const testerUrl = window.env.API_URL_TERTERS
