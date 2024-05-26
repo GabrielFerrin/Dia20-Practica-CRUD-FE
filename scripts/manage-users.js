@@ -213,10 +213,11 @@ submitBtn.addEventListener('click', async (event) => {
     body: JSON.stringify(Object.fromEntries(formData))
   })
   const res = await rawRes.json();
+  
   if (res.success) {
-    document.getElementById('user-form').reset();
-    document.getElementById('users').style.display = 'none';
-    getUsers();
+    // document.getElementById('user-form').reset();
+    // document.getElementById('users').style.display = 'none';
+    // getUsers();
   } else {
     alert(res.message)
   }

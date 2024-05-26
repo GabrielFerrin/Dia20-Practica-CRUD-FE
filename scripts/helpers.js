@@ -51,4 +51,4 @@ export const checkServer = async () => {
   }
 }
 
-setInterval(checkServer, 3000);
+// setInterval(checkServer, 3000);
