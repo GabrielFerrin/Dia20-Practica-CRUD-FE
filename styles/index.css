@@ -1,0 +1,18 @@
+@media (max-width: 485px) {
+  #bar-span {
+    display: none;
+  }
+
+  #wrapper02 {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 430px) {
+  #wrapper01-1 {
+    flex-direction: column;
+    width: 100%;
+    min-width: auto;
+    padding: 1rem;
+  }
+}

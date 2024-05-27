@@ -43,7 +43,7 @@ const checkTestersAvailable = async () => {
       testerError.style.display = 'block';
     }
   } catch (error) {
-    console.log(error.message)
+    alert(error.message)
     spinner01.style.display = 'none';
   }
 }
@@ -110,7 +110,6 @@ submitBtn.addEventListener('click', async (event) => {
             body: JSON.stringify({ table })
           })
           const fakeData = await fake.json()
-          console.log('fakeData:', fakeData)
           spinner05.style.display = 'none'
           spinner05.scrollIntoView({ behavior: 'smooth' });
           if (!fakeData.success) {
@@ -129,7 +128,7 @@ submitBtn.addEventListener('click', async (event) => {
       }
     }
   } catch (error) {
-    console.log('error:', error)
+    alert('error:', error)
   }
 })
 
@@ -154,7 +153,7 @@ const checkUsernameAvailable = async () => {
     form.checkValidity() && usernameAvailable ?
       submitBtn.disabled = false : submitBtn.disabled = true
   } catch (error) {
-    console.log(error.message)
+    alert(error.message)
   }
 }
 

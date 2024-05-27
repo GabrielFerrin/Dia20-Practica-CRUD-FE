@@ -104,14 +104,14 @@ input {
 }
 
 #checkmark01 {
-  right: 3%;
+  right: -8%;
   top: 14px;
 }
 
 #email-spinner {
   position: absolute;
   top: 20px;
-  right: 3%;
+  right: -8%;
 }
 
 #email-container {
@@ -182,6 +182,7 @@ button:active {
 }
 
 .role-wrapper {
+  font-size: .8rem;
   font-weight: 600;
   position: absolute;
   top: 5%;

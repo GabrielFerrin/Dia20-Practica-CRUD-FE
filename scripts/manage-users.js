@@ -52,6 +52,7 @@ const renderUsers = (users) => {
     // name
     const name = document.createElement('h3');
     name.textContent = user.name;
+    name.setAttribute('user_id', user.user_id);
     card.appendChild(name);
     // email
     const email = document.createElement('p');
@@ -64,7 +65,30 @@ const renderUsers = (users) => {
     // edit
     const edit = document.createElement('button');
     edit.classList.add('button2');
+    edit.setAttribute('email', user.email);
     edit.textContent = 'Editar';
+    edit.addEventListener('click', () => {
+      document.getElementById('user-form').reset();
+      userForm.style.display = 'flex';
+      userForm.scrollIntoView({ behavior: 'smooth' });
+      submitBtn.value = 'Actualizar';
+      submitBtn.textContent = 'Actualizar';
+      const name = document.getElementById('name');
+      name.value = user.name;
+      name.setAttribute('user_id', user.user_id);
+      const email = document.getElementById('email');
+      email.value = user.email;
+      email.setAttribute('email', user.email);
+      document.getElementById('password').placeholder = 'Nueva contraseña';
+      if (user.picture === 'local') {
+        pic = `./assets/${user.name.split(' ')[0]}.jpg`;
+      } else {
+        pic = `${apiUrl}/picture?user=${username}&pass=${pass}&id=${user.user_id}`;
+      }
+      document.getElementById('pic-placeholder').src = pic;
+      document.getElementById('users-title').textContent = 'Editar usuario';
+      document.getElementById('submit-btn').textContent = 'none';
+    })
     actions.appendChild(edit);
     // delete
     const deleteBtn = document.createElement('button');
@@ -97,7 +121,7 @@ const getUsers = async () => {
     const res = await rawRes.json();
     renderUsers(res)
   } catch (error) {
-    console.log('Error thrown:', error)
+    alert('Error thrown:', error)
   }
 }
 
@@ -114,12 +138,22 @@ addUserBtn.addEventListener('click', () => {
 // close form
 const cancelBtn = document.querySelector('#cancel-btn');
 const closeBtn = document.querySelector('#close-icon');
+const closeForm = () => {
+  form.reset();
+  closeBtn.click();
+  document.getElementById('checkmark01').style = 'display: none';
+}
 closeBtn.addEventListener('click', () => {
   document.getElementById('user-form').reset();
   userForm.style.display = 'none';
 })
 cancelBtn.addEventListener('click', () => {
-  closeBtn.click();
+  closeForm();
+})
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' || event.key === 'Esc') {
+    closeForm();
+  }
 })
 
 // profile picture
@@ -143,9 +177,8 @@ const checkStorageSpace = async () => {
     const res = await rawRes.json();
     if (res.success) return res.folderSize
     else throw new Error(JSON.stringify(res))
-  } catch (error) { 
-    console.log('Error thrown:', error)
-    throw new Error(JSON.stringify(error)) 
+  } catch (error) {
+    throw new Error(JSON.stringify(error))
   }
 }
 
@@ -181,7 +214,7 @@ const checkEmailAvailable = async () => {
     form.checkValidity() && emailAvailable ?
       submitBtn.disabled = false : submitBtn.disabled = true
   } catch (error) {
-    console.log(error)
+    alert(error)
   }
 }
 
@@ -193,19 +226,27 @@ Array(...form.elements).forEach((element) => {
       // check email availability
       const form = document.forms[0]
       submitBtn.disabled = true
+      const email = document.getElementById('email')
+      if (email.getAttribute('email') === email.value)
+        emailAvailable = true
       if (event.target.id === 'email' && event.target.value.length) {
         spanError.style.display = 'none';
         emailSpinner.style = 'display: block'
         checkMark.style = 'display: none'
         clearTimeout(timoutId);
-        timoutId = setTimeout(checkEmailAvailable, 1000);
-      } else {
-        // check validity
-        form.checkValidity() && emailAvailable ?
-          submitBtn.disabled = false : submitBtn.disabled = true
+        if (event.target.getAttribute('email') !== event.target.value) {
+          timoutId = setTimeout(checkEmailAvailable, 1000);
+        }
+        else {
+          emailAvailable = true
+          emailSpinner.style = 'display: none'
+          checkMark.style = 'display: block'
+          clearTimeout(timoutId)
+        }
       }
-      // if (password.value.length < 8) passwordError.style.display = 'block';
-      // else passwordError.style.display = 'none';
+      // check validity
+      form.checkValidity() && emailAvailable ?
+        submitBtn.disabled = false : submitBtn.disabled = true
     })
   }
 })
@@ -215,9 +256,7 @@ submitBtn.addEventListener('click', async (event) => {
   // check storage space
   try {
     const folderSize = await checkStorageSpace();
-    console.log('folderSize:', folderSize)
-    if (folderSize > 9000) {
-      console.log('folderSize:', folderSize)
+    if (folderSize > 9500) {
       alert('No queda espacio en el servidor. Esperamos resolverlo pronto.');
       return
     }
@@ -231,15 +270,19 @@ submitBtn.addEventListener('click', async (event) => {
     formData.append('picture', form.elements.picture.files[0]);
     const user = localStorage.getItem('username')
     const pass = localStorage.getItem('password')
-    const url = `${apiUrl}?user=${user}&pass=${pass}`;
+    const user_id = form.elements.name.getAttribute('user_id')
+    let url = `${apiUrl}?user=${user}&pass=${pass}${user_id ? '&id=' + user_id : ''}`;
     // send
+    let method = 'POST';
+    submitBtn.value === 'Actualizar' ?
+      method = 'PATCH' : 'POST'
     const rawRes = await fetch(url, {
-      method: 'POST',
+      method: method,
       body: formData
     });
     const res = await rawRes.json();
-    console.log('res:', res)
     if (res.success) {
+      console.log(res)
       userForm.style.display = 'none';
       form.reset(); // TODO: not working
       form.elements.picture.value = '';
@@ -247,9 +290,9 @@ submitBtn.addEventListener('click', async (event) => {
       imageElement.style = 'border-radius: none';
       getUsers();
     } else {
-      throw new Error(res.message)
+      console.log(error.message)
     }
   } catch (error) {
-    alert(error)
+    console.log(error)
   }
 })

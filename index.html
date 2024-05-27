@@ -8,6 +8,7 @@
   <link rel="icon" href="./assets/logo-dark.svg" type="image/svg">
   <!-- styles -->
   <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/index.css">
   <!-- scripts -->
   <script defer type="module" src="./scripts/helpers.js"></script>
   <script defer src="./scripts/index.js" type="module"></script>
@@ -27,15 +28,19 @@
       <!-- <span id="user-name">User</span> -->
       <!-- <img src="./assets/profile-pic-01.jpg" alt="Foto del perfil" height="50" id="profile-pic"> -->
       <button id="register-btn" onclick="location.href='./register.html'" class="header-action">
-        Registrarse
+        Registrarme
       </button>
     </div>
   </header>
   <div id="strip"></div>
   <main id="home">
     <div id="wrapper01">
-      <h2>Manejo de usuarios de FUNVAL</h2>
-      <p>Aplicación de práctica para manejo de usuarios. Diseño responsivo.</p>
+      <h2>Manejo de usuarios de</h2>
+      <h2><span id="bar-span">|</span> FRIENDS <span id="bar-span">|</span></h2>
+      <p>
+        Al crear una cuenta podrás simular las interacciones
+        de usuarios en una red social. Diseño responsivo.
+      </p>
       <div id="wrapper01-1">
         <div class="tech-wrapper">
           <span>Frontend</span>
@@ -55,7 +60,7 @@
         <input type="password" name="password" id="password" required autocomplete="current-password" placeholder="Contraseña"
           minlength="8">
         <input type="submit" value="Iniciar sesión" id="submit-btn">
-        <a href="./register.html" id="register-link">Registrate</a>
+        <a href="./register.html" id="register-link">Crear cuenta</a>
       </form>
       <span id="error-span" class="error-span">Nombre de usuario o contraseña incorrectos</span>
     </div>

@@ -1,5 +1,5 @@
 // evironment
-const prod = true
+const prod = false
 let url = '';
 url = prod ? 'https://funval-users.onrender.com' :
   'http://localhost:3001'
@@ -51,4 +51,4 @@ export const checkServer = async () => {
   }
 }
 
-setInterval(checkServer, 5000);
+// setInterval(checkServer, 5000);
